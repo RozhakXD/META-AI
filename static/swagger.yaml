@@ -1,0 +1,83 @@
+openapi: 3.0.0
+info:
+  title: META AI Chat API
+  version: 1.0.0
+  description: |
+    The **META AI Chat API** allows you to interact with the META AI chatbot.
+    Send a message to the chatbot and receive an intelligent response in real-time.
+    This API is designed to be simple, fast, and easy to integrate into your applications.
+
+    ### Key Features:
+    - **Real-time interaction**: Send messages and get instant responses.
+    - **Simple integration**: Easy-to-use JSON-based API.
+    - **Scalable**: Built to handle high volumes of requests.
+
+    ### Authentication:
+    This API does not require authentication for now. Simply send your request to the `/api/chat` endpoint.
+
+servers:
+  - url: https://meta-ai.rozhak.cfd/
+    description: Production server
+  - url: http://localhost:5000
+    description: Local development server
+
+paths:
+  /api/chat:
+    post:
+      summary: Send a message to the META AI chatbot
+      description: |
+        Send a text message to the META AI chatbot and receive a response.
+        The chatbot is designed to understand natural language and provide relevant answers.
+
+        ### Example Use Cases:
+        - **Customer Support**: Automate responses to common customer queries.
+        - **Personal Assistant**: Integrate into apps as a virtual assistant.
+        - **Education**: Provide instant answers to student questions.
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: The message you want to send to the chatbot.
+                  example: "Hello, how can I help you today?"
+              required:
+                - message
+      responses:
+        '200':
+          description: Successful response from the chatbot
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The chatbot's response to your message.
+                    example: "Hi there! I'm META AI. How can I assist you?"
+        '400':
+          description: Bad request. The request body is invalid or missing required fields.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message describing the issue.
+                    example: "No message provided"
+        '500':
+          description: Internal server error. Something went wrong on the server side.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message describing the issue.
+                    example: "An error occurred"

@@ -1,0 +1,5 @@
+requests-toolbelt
+requests
+Flask
+Flask-Cors
+flask-swagger-ui
