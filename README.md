@@ -18,7 +18,7 @@ pkg install python-pip git
 git clone https://github.com/RozhakXD/META-AI.git
 cd META-AI
 pip install -r requirements.txt
-python app.py
+python run.py
 ```
 
 ## Usage 🚀
