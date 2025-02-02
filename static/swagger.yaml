@@ -9,11 +9,12 @@ info:
 
     ### Key Features:
     - **Real-time interaction**: Send messages and get instant responses.
+    - **Image generation**: Generate images based on user prompts.
     - **Simple integration**: Easy-to-use JSON-based API.
     - **Scalable**: Built to handle high volumes of requests.
 
     ### Authentication:
-    This API does not require authentication for now. Simply send your request to the `/api/chat` endpoint.
+    This API does not require authentication for now. Simply send your request to the `/api/chat` or `/api/images` endpoint.
 
 servers:
   - url: https://meta-ai.rozhak.cfd/
@@ -70,6 +71,84 @@ paths:
                     type: string
                     description: Error message describing the issue.
                     example: "No message provided"
+        '500':
+          description: Internal server error. Something went wrong on the server side.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message describing the issue.
+                    example: "An error occurred"
+
+  /api/images:
+    post:
+      summary: Generate images based on a user prompt
+      description: |
+        Send a text message (prompt) to generate images using META AI.
+        This endpoint requires both a message and cookies for authentication.
+
+        ### Example Use Cases:
+        - **Creative Projects**: Generate images for art, design, or marketing.
+        - **Education**: Create visual aids for learning materials.
+        - **Entertainment**: Generate fun or imaginative visuals.
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: The prompt to generate images.
+                  example: "A futuristic cityscape at night"
+                cookies:
+                  type: string
+                  description: Authentication cookies required for the request.
+                  example: "your_cookies_here"
+              required:
+                - message
+                - cookies
+      responses:
+        '200':
+          description: Successful image generation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  urls:
+                    type: array
+                    items:
+                      type: string
+                    description: URLs of the generated images.
+                    example: ["https://example.com/image1.jpg", "https://example.com/image2.jpg"]
+        '400':
+          description: Bad request. The request body is invalid or missing required fields.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message describing the issue.
+                    example: "No message provided"
+        '415':
+          description: Unsupported Media Type. The request must be in JSON format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message describing the issue.
+                    example: "Content-Type must be application/json"
         '500':
           description: Internal server error. Something went wrong on the server side.
           content:
