@@ -37,7 +37,9 @@ curl -X POST http://localhost:5000/chat -H "Content-Type: application/json" -d '
 ```
 
 ## Screenshot 📸
-![Image](https://github.com/user-attachments/assets/3527d8e6-2a29-4719-ad9c-99837e050d65)
+![Image 1](https://github.com/user-attachments/assets/3527d8e6-2a29-4719-ad9c-99837e050d65)
+
+![Image 2](https://github.com/user-attachments/assets/eb84ffbe-9def-4280-9fe3-b260bd05fd6b)
 
 ## Support the Project 💖
 If you find this project helpful, consider supporting me to keep it alive and improve it further. You can support me via:
